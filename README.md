@@ -8,3 +8,14 @@ A specification of the [Cigarette smokers problem](https://en.wikipedia.org/wiki
 The generated state graph is very small:
 
 ![fig1](images/fig1.png)
+
+Blinker.tla
+-----------
+
+Simple spec simulating, more or less, [this](https://github.com/mryndzionek/esm/blob/master/apps/blink/src/blink.c) application.
+Three state machines controlling three LEDs. With 100ms resolution (model run with `BC <- <<3, 5, 7>>`) model checker
+finds 384 distinct states:
+
+![fig2](images/blinker.png)
+
+Just a humble reminder to never underestimate even the simplest concurrent programs, I guess :smiley:
