@@ -10,7 +10,7 @@ VARIABLES bState
 
 ASSUME /\ BC \in Seq(Nat)
 
-vars == <<bState>>
+vars == bState
 
 States == {"Active_Off", "Active_On"}
 Blinker == [timer : Nat, state : States]
@@ -22,23 +22,26 @@ Init ==
                                       state |-> "Active_Off"]
                 ]
                                 
-Handle(n) == /\ bState[n].timer = 0
-             /\ bState[n].state = "Active_Off"
-             /\ bState' = [bState EXCEPT ![n].timer = BC[n],
-                                   ![n].state = "Active_On"]
-          \/
-             /\ bState[n].timer = 0
-             /\ bState[n].state = "Active_On"
-             /\ bState' = [bState EXCEPT ![n].timer = BC[n],
-                                         ![n].state = "Active_Off"]
+Transition(n) == /\ bState[n].timer = 0
+                 /\ bState[n].state = "Active_Off"
+                 /\ bState' = [bState EXCEPT ![n].timer = BC[n],
+                                             ![n].state = "Active_On"]
+              \/
+                 /\ bState[n].timer = 0
+                 /\ bState[n].state = "Active_On"
+                 /\ bState' = [bState EXCEPT ![n].timer = BC[n],
+                                             ![n].state = "Active_Off"]
              
 Tick == /\ \A n \in DOMAIN BC : bState[n].timer > 0
         /\ bState' = [n \in DOMAIN BC |-> [timer |-> bState[n].timer - 1,
                                            state |-> bState[n].state]]
 
-Next == Tick \/ \E n \in DOMAIN BC : Handle(n)
+Next == Tick \/ \E n \in DOMAIN BC : Transition(n)
 
 Spec == Init /\ [][Next]_vars
 FairSpec == Spec /\ WF_vars(Next)
+
+LEDsWillTurnOn ==  \A n \in DOMAIN BC : (bState[n].state = "Active_Off") ~> (bState[n].state = "Active_On")
+LEDsWillTurnOff == \A n \in DOMAIN BC : (bState[n].state = "Active_On")  ~> (bState[n].state = "Active_Off")
 
 =============================================================================
