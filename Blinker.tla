@@ -41,7 +41,12 @@ Next == Tick \/ \E n \in DOMAIN BC : Transition(n)
 Spec == Init /\ [][Next]_vars
 FairSpec == Spec /\ WF_vars(Next)
 
-LEDsWillTurnOn ==  \A n \in DOMAIN BC : (bState[n].state = "Active_Off") ~> (bState[n].state = "Active_On")
-LEDsWillTurnOff == \A n \in DOMAIN BC : (bState[n].state = "Active_On")  ~> (bState[n].state = "Active_Off")
+LEDsWillTurnOn ==
+    \A n \in DOMAIN BC :
+        (bState[n].state = "Active_Off") ~> (bState[n].state = "Active_On")
+    
+LEDsWillTurnOff ==
+    \A n \in DOMAIN BC :
+        (bState[n].state = "Active_On")  ~> (bState[n].state = "Active_Off")
 
 =============================================================================
