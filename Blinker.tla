@@ -18,9 +18,9 @@ Blinker == [timer : Nat, state : States]
 TypeOK == /\ bState \in [DOMAIN BC -> Blinker]
 
 Init ==
-    /\ bState = [n \in DOMAIN BC |-> [timer |-> BC[n],
-                                      state |-> "Active_Off"]
-                ]
+    /\ bState \in {[n \in DOMAIN BC |-> [timer |-> BC[n],
+                                         state |-> "Active_Off"]
+                   ] : s \in States}
                                 
 Transition(n) == /\ bState[n].timer = 0
                  /\ bState[n].state = "Active_Off"
