@@ -23,3 +23,21 @@ finds 384 distinct states:
 ![fig2](images/blinker.png)
 
 Just a humble reminder to never underestimate even the simplest concurrent programs, I guess :smiley:
+
+GameOfLife.tla
+--------------
+
+[Conway's Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life)
+
+![spec3](images/GameOfLife.png)
+
+All the 'attractors' for a 3x3 grid
+
+![fig3](images/gameoflife_3x3.png)
+
+Base Graphviz parameters:
+
+```sh
+dot -Tpng -Nstyle=filled -Npenwidth=5 -Epenwidth=8 -Ksfdp -Goverlap=prism -Goverlap_scaling=-10
+```
+
