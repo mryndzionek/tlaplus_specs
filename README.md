@@ -49,7 +49,7 @@ Zoom on two of the smaller clusters:
 
 ![fig7](images/gameoflife_4x4cz2.png)
 
-Under symmetry group of the square view (D<sub>4</sub>) the state space shrinks to ... 27 states.
+Under 'symmetry group of the square' (D<sub>4</sub>) view in TLC the state space shrinks to ... 27 states.
 Under this view it's even possible to run TLC on 5x5 grid and get 486 states (reduction from 33554432):
 
 ![fig8](images/gameoflife_5x5_sym.png)
