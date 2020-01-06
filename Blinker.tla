@@ -20,7 +20,7 @@ TypeOK == /\ bState \in [DOMAIN BC -> Blinker]
 Init ==
     /\ bState \in {[n \in DOMAIN BC |-> [timer |-> BC[n],
                                          state |-> "Active_Off"]
-                   ] : s \in States}
+                   ]}
                                 
 Transition(n) == /\ bState[n].timer = 0
                  /\ bState[n].state = "Active_Off"
