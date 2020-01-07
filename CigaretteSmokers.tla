@@ -6,16 +6,16 @@
 (***************************************************************************)
 EXTENDS Integers, FiniteSets
 
-CONSTANT Ing, Offers
+CONSTANT Ingredients, Offers
 VARIABLE smokers, dealer
 
 (***************************************************************************)
-(* 'Ing' is a set of ingredients, originally {matches, paper, tobacco}     *)
-(* 'Offers' is a subset of subsets of ingredients, each missing just one   *)
-(* ingriedent                                                              *)
+(* 'Ingredients' is a set of ingredients, originally                       *)
+(* {matches, paper, tobacco}. 'Offers' is a subset of subsets of           *)
+(* ingredients, each missing just one ingriedent                           *)
 (***************************************************************************)
-ASSUME /\ Offers \subseteq (SUBSET Ing)
-       /\ \A n \in Offers : Cardinality(n) = Cardinality(Ing) - 1
+ASSUME /\ Offers \subseteq (SUBSET Ingredients)
+       /\ \A n \in Offers : Cardinality(n) = Cardinality(Ingredients) - 1
 
 (***************************************************************************)
 (* 'smokers' is a function from the ingredient the smoker has              *)
@@ -23,20 +23,20 @@ ASSUME /\ Offers \subseteq (SUBSET Ing)
 (* (smoking/not smoking)                                                   *)
 (* 'dealer' is an element of 'Offers', or an empty set                     *)
 (***************************************************************************)
-TypeOK == /\ smokers \in [Ing -> [smoking: BOOLEAN]]
+TypeOK == /\ smokers \in [Ingredients -> [smoking: BOOLEAN]]
           /\ dealer  \in Offers \/ dealer = {}
           
 vars == <<smokers, dealer>>
 
-Init == /\ smokers = [r \in Ing |-> [smoking |-> FALSE]]
+Init == /\ smokers = [r \in Ingredients |-> [smoking |-> FALSE]]
         /\ dealer \in Offers
         
 startSmoking == /\ dealer /= {}
-                /\ smokers' = [r \in Ing |-> [smoking |-> {r} \cup dealer = Ing]]
+                /\ smokers' = [r \in Ingredients |-> [smoking |-> {r} \cup dealer = Ingredients]]
                 /\ dealer' = {}
                 
 stopSmoking == /\ dealer = {}
-               /\ LET r == CHOOSE r \in Ing : smokers[r].smoking
+               /\ LET r == CHOOSE r \in Ingredients : smokers[r].smoking
                   IN smokers' = [smokers EXCEPT ![r].smoking = FALSE] 
                /\ dealer' \in Offers
 
@@ -49,5 +49,5 @@ FairSpec == Spec /\ WF_vars(Next)
 (* An invariant checking that at most one smoker smokes at any particular  *)
 (* moment                                                                  *)
 (***************************************************************************)
-AtMostOne == Cardinality({r \in Ing : smokers[r].smoking}) <= 1
+AtMostOne == Cardinality({r \in Ingredients : smokers[r].smoking}) <= 1
 =============================================================================
