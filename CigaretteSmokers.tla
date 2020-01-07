@@ -36,9 +36,9 @@ startSmoking == /\ dealer /= {}
                 /\ dealer' = {}
                 
 stopSmoking == /\ dealer = {}
-               /\ \E r \in Ing : /\ smokers[r].smoking
-                                 /\ smokers' = [smokers EXCEPT ![r].smoking = FALSE] 
-                                 /\ \E s \in Offers : dealer' = s
+               /\ LET r == CHOOSE r \in Ing : smokers[r].smoking
+                  IN smokers' = [smokers EXCEPT ![r].smoking = FALSE] 
+               /\ dealer' \in Offers
 
 Next == startSmoking \/ stopSmoking
 
