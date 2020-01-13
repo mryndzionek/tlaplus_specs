@@ -28,15 +28,19 @@ TypeOK == /\ smokers \in [Ingredients -> [smoking: BOOLEAN]]
           
 vars == <<smokers, dealer>>
 
+ChooseOne(S, P(_)) == CHOOSE x \in S : P(x) /\ \A y \in S : P(y) => y = x
+
 Init == /\ smokers = [r \in Ingredients |-> [smoking |-> FALSE]]
         /\ dealer \in Offers
         
 startSmoking == /\ dealer /= {}
-                /\ smokers' = [r \in Ingredients |-> [smoking |-> {r} \cup dealer = Ingredients]]
+                /\ smokers' = [r \in Ingredients |-> [smoking |-> {r} \cup 
+                                                      dealer = Ingredients]]
                 /\ dealer' = {}
                 
 stopSmoking == /\ dealer = {}
-               /\ LET r == CHOOSE r \in Ingredients : smokers[r].smoking
+               /\ LET r == ChooseOne(Ingredients,
+                                     LAMBDA x : smokers[x].smoking)
                   IN smokers' = [smokers EXCEPT ![r].smoking = FALSE] 
                /\ dealer' \in Offers
 
