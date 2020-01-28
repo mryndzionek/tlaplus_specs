@@ -54,6 +54,12 @@ Under this view it's even possible to run TLC on 5x5 grid and get 486 states (re
 
 ![fig8](images/gameoflife_5x5_sym.png)
 
+Base Graphviz parameters:
+
+```sh
+dot -Tpng -Nstyle=filled -Npenwidth=5 -Epenwidth=8 -Ksfdp -Goverlap=prism -Goverlap_scaling=-10
+```
+
 Requirements.tla
 ----------------
 
@@ -66,10 +72,4 @@ Experimental specification aimed at mechanising verification of written requirem
 Checking `CheckRequirements` spec produces:
 
 ![fig9](images/conflicting.png)
-
-Base Graphviz parameters:
-
-```sh
-dot -Tpng -Nstyle=filled -Npenwidth=5 -Epenwidth=8 -Ksfdp -Goverlap=prism -Goverlap_scaling=-10
-```
 
