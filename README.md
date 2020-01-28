@@ -54,6 +54,19 @@ Under this view it's even possible to run TLC on 5x5 grid and get 486 states (re
 
 ![fig8](images/gameoflife_5x5_sym.png)
 
+Requirements.tla
+----------------
+
+Experimental specification aimed at mechanising verification of written requirements documents.
+
+![spec4](images/Requirements.png)
+
+![spec5](images/CheckRequirements.png)
+
+Checking `CheckRequirements` spec produces:
+
+![fig9](images/conflicting.png)
+
 Base Graphviz parameters:
 
 ```sh

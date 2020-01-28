@@ -7,7 +7,7 @@ VARIABLES inputs, output
 (* We have two buttons - A and B - and an indicator light. Spec like this  *)
 (* can help with disambiguating written requirements in situations where   *)
 (* multiple requirements concern same resource. In this case requirements  *)
-(* say only what needs to be done if one of the button is pressed or not   *)
+(* say only what needs to be done if one of the button is pressed, or not  *)
 (* totally ignoring the situation where both are pressed                   *)
 (***************************************************************************)
 Inputs == SUBSET {"a_button_pressed", "b_button_pressed"}
@@ -17,7 +17,7 @@ TypeOK == /\ inputs \in Inputs
           /\ output \in Output
 
 (***************************************************************************)
-(* Initially indicator light is off and buttons can pushed or not          *)
+(* Initially indicator light is off and buttons can be pushed or not       *)
 (***************************************************************************)
 Init == /\ inputs \in Inputs
         /\ output = "off"
