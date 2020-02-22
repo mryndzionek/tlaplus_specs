@@ -78,6 +78,12 @@ SlidingPuzzles.tla
 ------------------
 
 Solution to a variation of [sliding block puzzle](https://en.wikipedia.org/wiki/Sliding_puzzle)
-most commonly known as [Klotski](https://en.wikipedia.org/wiki/Klotski).
+most commonly known as [Klotski](https://en.wikipedia.org/wiki/Klotski). Raymond Hettinger talked
+about this puzzle and the state graph [here](https://youtu.be/_GP9OpZPUYc?t=742).
 
 ![spec6](images/SlidingPuzzles.png)
+
+TLC finds 25955 distinct states. Green node is the starting position.
+Red nodes are the goal nodes - with the biggest piece in center-bottom position.
+
+![fig10](images/sliding.png)
