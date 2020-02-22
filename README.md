@@ -78,12 +78,26 @@ SlidingPuzzles.tla
 ------------------
 
 Solution to a variation of [sliding block puzzle](https://en.wikipedia.org/wiki/Sliding_puzzle)
-most commonly known as [Klotski](https://en.wikipedia.org/wiki/Klotski). Raymond Hettinger talked
-about this puzzle and the state graph [here](https://youtu.be/_GP9OpZPUYc?t=742).
+most commonly known as [Klotski](https://en.wikipedia.org/wiki/Klotski).
 
 ![spec6](images/SlidingPuzzles.png)
 
 TLC finds 25955 distinct states. Green node is the starting position.
 Red nodes are the goal nodes - with the biggest piece in center-bottom position.
 
-![fig10](images/sliding.png)
+![fig10](images/klotski.png)
+
+The Pennant variation has significantly smaller state space of 'only' 1398 states.
+Raymond Hettinger talked about this puzzle and the state graph [here](https://youtu.be/_GP9OpZPUYc?t=742).
+
+```tla
+Pennant == {{<<0, 0>>, <<0, 1>>, <<1, 0>>, <<1, 1>>},
+            {<<2, 0>>, <<3, 0>>}, {<<2, 1>>, <<3, 1>>},
+            {<<0, 2>>}, {<<1, 2>>},
+            {<<0, 3>>, <<0, 4>>}, {<<1, 3>>, <<1, 4>>},
+            {<<2, 3>>, <<3, 3>>}, {<<2, 4>>, <<3, 4>>}}
+            
+PennantGoal == {<<0, 3>>, <<0, 4>>, <<1, 3>>, <<1, 4>>} \in board
+```
+
+![fig11](images/pennant.png)
