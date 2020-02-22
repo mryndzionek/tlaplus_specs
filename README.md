@@ -73,3 +73,11 @@ Checking `CheckRequirements` spec produces:
 
 ![fig9](images/conflicting.png)
 
+
+SlidingPuzzles.tla
+------------------
+
+Solution to a variation of [sliding block puzzle](https://en.wikipedia.org/wiki/Sliding_puzzle)
+most commonly known as [Klotski](https://en.wikipedia.org/wiki/Klotski).
+
+![spec6](images/SlidingPuzzles.png)
