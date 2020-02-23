@@ -24,8 +24,7 @@ TypeOK == board \in SUBSET Piece
 (* appropriately filtered von Neumann neighborhood points                  *)
 (***************************************************************************)
 dir(p, es) == LET dir == {<<1, 0>>, <<0, 1>>, <<-1, 0>>, <<0, -1>>}
-              IN {d \in dir : /\ (p[1] + d[1]) < W /\ (p[1] + d[1]) >= 0
-                              /\ (p[2] + d[2]) < H /\ (p[2] + d[2]) >= 0
+              IN {d \in dir : /\ <<p[1] + d[1], p[2] + d[2]>> \in Pos
                               /\ <<p[1] + d[1], p[2] + d[2]>> \notin es}
 
 (***************************************************************************)
@@ -44,12 +43,13 @@ move(p, d) == LET s == <<p[1] + d[1], p[2] + d[2]>>
 update(e, es) == LET dirs  == dir(e, es)
                      moved == {move(e, d) : d \in dirs}
                      free  == {<<pc, m>> \in moved :
-                                 m \cap (UNION (board \ {pc})) = {}}
+                                 /\ m \cap (UNION (board \ {pc})) = {}
+                                 /\ \A p \in m : p \in Pos}
                  IN {(board \ {pc}) \cup {m} : <<pc, m>> \in free}
 
 Init == board = Klotski
         
-Next == LET empty == (0 .. W - 1) \X (0 .. H - 1) \ UNION board
+Next == LET empty == Pos \ UNION board
         IN  \E e \in empty : board' \in update(e, empty)
 
 =============================================================================
