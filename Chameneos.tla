@@ -28,7 +28,9 @@ Sum(f, S) == IF S = {} THEN 0
 TypeOK == /\ chameneoses \in [ ChameneosID -> (Color \cup {Faded}) \X (0 .. N) ]
           /\ meetingPlace \in ChameneosID \cup {MeetingPlaceEmpty}
 
-Complement(c1, c2) == IF c1 = c2 THEN c1 ELSE CHOOSE cid \in Color \ {c1, c2} : TRUE
+Complement(c1, c2) == IF c1 = c2
+                      THEN c1
+                      ELSE CHOOSE cid \in Color \ {c1, c2} : TRUE
 
 Meet(cid) == IF meetingPlace = MeetingPlaceEmpty
              THEN IF numMeetings < N
@@ -41,12 +43,15 @@ Meet(cid) == IF meetingPlace = MeetingPlaceEmpty
                   \* meeting place is not empty - two chameneoses mutate
              ELSE /\ meetingPlace /= cid
                   /\ meetingPlace' = MeetingPlaceEmpty
-                  /\ chameneoses' = LET newColor == Complement(chameneoses[cid][1], chameneoses[meetingPlace][1])
-                                    IN [chameneoses EXCEPT ![cid] = <<newColor, @[2] + 1>>,
-                                                           ![meetingPlace] = <<newColor, @[2] + 1>>]
+                  /\ chameneoses' =
+                        LET newColor == Complement(chameneoses[cid][1],
+                                                      chameneoses[meetingPlace][1])
+                        IN [chameneoses EXCEPT ![cid] = <<newColor, @[2] + 1>>,
+                                               ![meetingPlace] = <<newColor, @[2] + 1>>]
                   /\ numMeetings' = numMeetings + 1
 
-Init == /\ chameneoses = [c \in ChameneosID |-> <<<<"blue", "red", "yellow", "blue">>[c], 0>>]
+Init == /\ chameneoses = [c \in ChameneosID |->
+                                <<<<"blue", "red", "yellow", "blue">>[c], 0>>]
         /\ meetingPlace = MeetingPlaceEmpty
         /\ numMeetings = 0
 
