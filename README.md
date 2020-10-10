@@ -128,3 +128,13 @@ Chameneos.tla
 A specification of a 'concurrency game' requiring concurrent and symmetrical cooperation - [link](https://cedric.cnam.fr/fichiers/RC474.pdf)
 
 ![fig13](images/Chameneos.png)
+
+For N=3 there are 522 distinct states:
+
+![fig14](images/chameneos_n2.png)
+
+The lattices at the edges are due to the possible orders in which the chameneoses fade.
+
+For N=4 there are 6652 distinct states:
+
+![fig15](images/chameneos_n4.png)
