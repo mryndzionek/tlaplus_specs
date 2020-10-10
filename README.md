@@ -121,3 +121,10 @@ MasGoal == {{<<3, 0>>, <<4, 0>>,<<4, 1>>}, {<<3, 1>>, <<3, 2>>, <<4, 2>>}} \subs
 ```
 
 ![fig12](images/mas.png)
+
+Chameneos.tla
+-------------
+
+A specification of a 'concurrency game' requiring concurrent and symmetrical cooperation - [link](https://cedric.cnam.fr/fichiers/RC474.pdf)
+
+![fig13](images/Chameneos.png)
