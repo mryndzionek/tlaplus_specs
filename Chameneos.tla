@@ -4,20 +4,21 @@
 (* and symmetrical cooperation - https://cedric.cnam.fr/fichiers/RC474.pdf *)
 (***************************************************************************)
 
-EXTENDS Naturals, Integers, FiniteSets
+EXTENDS Integers
 
-\* number of total meeting after which chameneoses fade
-CONSTANT N
-ASSUME N \in Nat
+\* N - number of total meeting after which chameneoses fade
+\* M - number of chameneoses
+CONSTANT N, M
+ASSUME N \in (Nat \ {0}) /\ M \in (Nat \ {0})
 
 VARIABLE chameneoses, meetingPlace, numMeetings
 
 vars == <<chameneoses, meetingPlace, numMeetings>>
 
-Color == {"blue", "red", "yellow", "faded"}
+Color == {"blue", "red", "yellow"}
 Faded == CHOOSE c : c \notin Color
 
-ChameneosID == 1 .. 4
+ChameneosID == 1 .. M
 MeetingPlaceEmpty == CHOOSE e : e \notin ChameneosID
 
 RECURSIVE Sum(_, _)
@@ -50,8 +51,7 @@ Meet(cid) == IF meetingPlace = MeetingPlaceEmpty
                                                ![meetingPlace] = <<newColor, @[2] + 1>>]
                   /\ numMeetings' = numMeetings + 1
 
-Init == /\ chameneoses = [c \in ChameneosID |->
-                                <<<<"blue", "red", "yellow", "blue">>[c], 0>>]
+Init == /\ chameneoses \in [ChameneosID -> Color \X {0}]
         /\ meetingPlace = MeetingPlaceEmpty
         /\ numMeetings = 0
 
