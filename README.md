@@ -138,3 +138,8 @@ The lattices at the edges are due to the possible orders in which the chameneose
 For N=4 there are 6652 distinct states:
 
 ![fig15](images/chameneos_n4.png)
+
+All the above graphs are for single initial permutation of chameneoses.
+Here is a full graph for N=2, M=4 (4843 distinct states).
+
+![fig16](images/chameneos_n2_m4.png)
