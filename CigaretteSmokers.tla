@@ -6,7 +6,7 @@
 (***************************************************************************)
 EXTENDS Integers, FiniteSets
 
-CONSTANT Ingredients, Offers
+CONSTANT Ingredients
 VARIABLE smokers, dealer
 
 (***************************************************************************)
@@ -14,8 +14,8 @@ VARIABLE smokers, dealer
 (* {matches, paper, tobacco}. 'Offers' is a subset of subsets of           *)
 (* ingredients, each missing just one ingriedent                           *)
 (***************************************************************************)
-ASSUME /\ Offers \subseteq (SUBSET Ingredients)
-       /\ \A n \in Offers : Cardinality(n) = Cardinality(Ingredients) - 1
+Offers == {i \in SUBSET Ingredients :
+                        Cardinality(i) = Cardinality(Ingredients) - 1}
 
 (***************************************************************************)
 (* 'smokers' is a function from the ingredient the smoker has              *)
@@ -28,8 +28,6 @@ TypeOK == /\ smokers \in [Ingredients -> [smoking: BOOLEAN]]
           
 vars == <<smokers, dealer>>
 
-ChooseOne(S, P(_)) == CHOOSE x \in S : P(x) /\ \A y \in S : P(y) => y = x
-
 Init == /\ smokers = [r \in Ingredients |-> [smoking |-> FALSE]]
         /\ dealer \in Offers
         
@@ -39,9 +37,7 @@ startSmoking == /\ dealer /= {}
                 /\ dealer' = {}
                 
 stopSmoking == /\ dealer = {}
-               /\ LET r == ChooseOne(Ingredients,
-                                     LAMBDA x : smokers[x].smoking)
-                  IN smokers' = [smokers EXCEPT ![r].smoking = FALSE] 
+               /\ smokers' = [r \in Ingredients |-> [smoking |-> FALSE]]
                /\ dealer' \in Offers
 
 Next == startSmoking \/ stopSmoking
