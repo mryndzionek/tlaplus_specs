@@ -143,3 +143,11 @@ All the above graphs are for single initial permutation of chameneoses.
 Here is a full graph for N=2, M=4 (4843 distinct states).
 
 ![fig16](images/chameneos_n2_m4.png)
+
+Watchdog.tla
+------------
+
+![fig17](images/Watchdog.png)
+
+![fig18](images/watchdog_n3_t3.png)
+

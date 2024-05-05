@@ -11,3 +11,6 @@ convert -density 300 -append CheckRequirements.pdf $OPTS -crop 1570x1000+520+520
 convert -density 300 -append SlidingPuzzles.pdf $OPTS -crop 1570x2250+520+520 images/SlidingPuzzles.png
 convert -density 300 -append Chameneos.pdf $OPTS -crop 1770x2260+520+520 images/Chameneos.png
 convert images/Chameneos.png -crop 1770x2960+520+520 images/Chameneos.png
+# DIV generated with -textwidth 420
+convert -density 300 -append Watchdog.dvi $OPTS -crop 1870x2260+520+520 images/Watchdog.png
+convert images/Watchdog.png -crop 1870x3660+520+520 images/Watchdog.png
