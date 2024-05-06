@@ -14,3 +14,6 @@ convert images/Chameneos.png -crop 1770x2960+520+520 images/Chameneos.png
 # DIV generated with -textwidth 420
 convert -density 300 -append Watchdog.dvi $OPTS -crop 1870x2260+520+520 images/Watchdog.png
 convert images/Watchdog.png -crop 1870x3660+520+520 images/Watchdog.png
+# DIV generated with -textwidth 460
+convert -density 300 -append Scheduler.dvi $OPTS -crop 2000x2260+520+520 images/Scheduler.png
+convert images/Scheduler.png -crop 2000x4660+520+520 images/Scheduler.png

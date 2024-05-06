@@ -151,3 +151,16 @@ Watchdog.tla
 
 ![fig18](images/watchdog_n3_t3.png)
 
+Scheduler.tla
+-------------
+
+![fig19](images/Scheduler.png)
+
+State diagram for 3-task configuration:
+
+![fig20](images/scheduler.png)
+
+Sample trace rendered graphically. Can you spot when the sequence starts repeating?
+
+![fig21](images/scheduler_trace.png)
+
